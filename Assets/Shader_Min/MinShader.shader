@@ -16,7 +16,7 @@
 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
-            o.Albedo = c.rgb;
+			o.Albedo = fixed4(1.0f, 1.0f, 1.0f, 1);
         }
         ENDCG
     }
