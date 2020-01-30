@@ -1,4 +1,4 @@
-﻿Shader "Custom/Translucent"
+﻿Shader "Custom/Ice"
 {
 	SubShader
 	{
@@ -11,14 +11,16 @@
 
 		struct Input
 		{
-			float2 uv_MainTex;
+			float3 worldNormal;
+            float3 viewDir;
 		};
 
 		void surf(Input IN, inout SurfaceOutputStandard o)
 		{
 			o.Albedo = fixed4(1,1,1,1);
-			o.Alpha = 0.6;
-		}
+			float alpha = 1- (abs(dot(IN.viewDir,IN.worldNormal)));
+            o.Alpha = alpha*0.5f;
+        }
 		ENDCG
 	}
 		FallBack "Diffuse"
